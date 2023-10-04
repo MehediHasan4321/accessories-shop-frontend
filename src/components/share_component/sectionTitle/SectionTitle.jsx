@@ -4,12 +4,12 @@ import React from 'react';
 const SectionTitle = ({ info }) => {
 
     return (
-        <Container maxWidth="xl" sx={{ marginTop: '100px' }}>
+        <Container maxWidth="xl" sx={{ marginTop: '100px',marginBottom:'50px' }}>
             <Typography variant='h4' textAlign='center' sx={{marginBottom:'15px'}}>
-                New Arrivals
+                {info?.title}
             </Typography>
             <Typography variant='body2' color='GrayText' textAlign='center'>
-                How can you evaluate content without design
+                {info?.description}
             </Typography>
         </Container>
     );

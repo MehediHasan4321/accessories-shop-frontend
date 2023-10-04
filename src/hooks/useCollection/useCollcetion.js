@@ -1,6 +1,5 @@
 const { useQuery } = require("react-query")
 
-
 const useCollection = () => {
 
     const { data, isLoading } = useQuery({

@@ -1,13 +1,11 @@
-const { Container, Typography } = require("@mui/material")
+import React from 'react';
 
-const ShopPage = ()=>{
+const Page = () => {
     return (
+        <div>
+            <h1>shop Page</h1>
+        </div>
+    );
+};
 
-        <Container maxWidth="xl">
-            <Typography variant="h4">Shop</Typography>
-        </Container>
-        
-    )
-}
-
-export default ShopPage
+export default Page

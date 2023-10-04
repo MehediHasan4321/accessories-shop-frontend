@@ -1,4 +1,5 @@
-import useCollection from '@/app/hooks/useCollection/useCollcetion';
+
+import useCollection from '@/src/hooks/useCollection/useCollcetion';
 import { Box, Container, Typography } from '@mui/material';
 import React from 'react';
 

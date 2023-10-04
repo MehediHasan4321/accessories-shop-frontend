@@ -1,8 +1,9 @@
+
 import { Inter } from 'next/font/google'
 import './home.css'
-import NavBar from './components/share_component/navbar/NavBar'
-import Footer from './components/share_component/footer/Footer'
 const inter = Inter({ subsets: ['latin'] })
+import NavBar from '@/src/components/share_component/navbar/NavBar'
+import Footer from '@/src/components/share_component/footer/Footer'
 
 export const metadata = {
   title: 'Accessorices Shop',
@@ -11,13 +12,16 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+  
   return (
     <html lang="en">
-      
+
       <body className={inter.className}>
-        <NavBar />
-        {children}
-        <Footer />
+          <NavBar />
+          <main>
+            {children}
+          </main>
+          <Footer />
       </body>
     </html>
   )
