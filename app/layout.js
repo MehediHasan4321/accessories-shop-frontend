@@ -1,9 +1,10 @@
-
 import { Inter } from 'next/font/google'
 import './home.css'
 const inter = Inter({ subsets: ['latin'] })
 import NavBar from '@/src/components/share_component/navbar/NavBar'
 import Footer from '@/src/components/share_component/footer/Footer'
+import Provider from '@/src/utils/queryProvider/queryProvider'
+
 
 export const metadata = {
   title: 'Accessorices Shop',
@@ -12,16 +13,16 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  
+
   return (
     <html lang="en">
-
       <body className={inter.className}>
-          <NavBar />
-          <main>
-            {children}
-          </main>
-          <Footer />
+
+        <NavBar />
+        <Provider>
+          {children}
+        </Provider>
+        <Footer />
       </body>
     </html>
   )

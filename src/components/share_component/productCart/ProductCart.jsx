@@ -3,16 +3,19 @@ import React from 'react';
 import Rating from '../rating/Rating';
 import NextLink from 'next/link'
 import { Link as MUILink } from '@mui/material';
+import Image from 'next/image';
+
 
 const ProductCart = ({ product }) => {
     const { title, price, rating, image, product_collection } = product.attributes || {}
     
     const url = image?.data?.attributes?.formats?.small?.url
     const collectionName = product_collection?.data?.attributes?.collectionName
+    
     return (
-        <MUILink href={`/products`} component={NextLink} underline='none' color='#2f2f2f' >
+        <MUILink href={`/products/${product?.id}`} component={NextLink} underline='none' color='#2f2f2f' >
             <Box component='div' sx={{ width: '270px', height: '370px', borderRadius: '7px', cursor: 'pointer', background: '#ddd', padding: '2px' }}>
-                <img src={url} alt={title} style={{ width: '100%', height: '70%', objectFit: 'cover' }} />
+                <Image src={url} alt={title} width={270} height={270}/>
                 <Box>
                     <Typography variant='body1' textAlign='center'>
                         {title}
