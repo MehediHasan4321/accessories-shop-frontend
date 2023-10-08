@@ -1,20 +1,23 @@
 'use client'
+import ContentBox from "@/src/components/productDetails/ContentBox/ContentBox"
+import ImageBox from "@/src/components/productDetails/imageBox/ImageBox"
 import useProductDetails from "@/src/hooks/useProductDetails/useProductDetails"
-import Provider from "@/src/utils/queryProvider/queryProvider"
-
-
-
-const { Container } = require("@mui/material")
+const { Container, Box } = require("@mui/material")
 
 const Page = ({ params }) => {
 
-    const { details, isLoading } = useProductDetails(params.id)
+    const { details, isLoading, reviews, images } = useProductDetails(params.id)
+
+    const url = images?.attributes?.url
 
 
     return (
-        <Container>
+        <Container maxWidth='xl'>
 
-            <h1>router :{JSON.stringify(details)}</h1>
+            <Box sx={{display:'flex',gap:'2rem'}}>
+                <ImageBox image={url} />
+                <ContentBox content={details}/>
+            </Box>
 
         </Container>
     )
