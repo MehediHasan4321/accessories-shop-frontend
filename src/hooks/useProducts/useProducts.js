@@ -1,3 +1,4 @@
+
 import { useQuery } from "react-query"
 
 const useProducts = ()=>{
@@ -6,6 +7,7 @@ const useProducts = ()=>{
         return res.json()
     }})
 
+    
     return  {
         products:data,
         isLoading,

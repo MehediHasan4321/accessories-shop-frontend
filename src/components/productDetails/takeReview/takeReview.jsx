@@ -16,6 +16,7 @@ const TakeReview = () => {
                     onChange={(event, newValue) => {
                         setValue(newValue);
                     }}
+                    size="large"
                 />
                 <Button sx={{ fontWeight: '700', background: '#D5E8D4' }} fullWidth>Add</Button>
             </Box>
