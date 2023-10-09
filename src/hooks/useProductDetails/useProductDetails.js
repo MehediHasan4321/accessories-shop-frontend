@@ -17,7 +17,7 @@ const useProductDetails = (id) => {
     const reviews = productData?.reviews?.data
     const images = productData?.image?.data
     const ratingCount = reviews.length
-
+    const description = productData?.description
     const rating = reviews.reduce((acc, curr) => {
         acc += curr?.attributes?.rating
         return acc
@@ -35,7 +35,7 @@ const useProductDetails = (id) => {
         ratingCount,
     }
 
-  
+
     
 
     return {
@@ -43,6 +43,7 @@ const useProductDetails = (id) => {
         images,
         isLoading,
         reviews,
+        description,
     }
 }
 

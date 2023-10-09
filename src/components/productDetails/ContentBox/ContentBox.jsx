@@ -1,17 +1,18 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Rating, Typography } from '@mui/material';
 import React from 'react';
-import Rating from '../../share_component/rating/Rating';
+import ProductAciton from '../productAction/productAciton';
+import TagBox from '../tagBox/tagBox';
 
 const ContentBox = ({content}) => {
    
-    const {title,price,rating,quantity,tags,socialMedia,sub_category,product_collection,ratingCount} = content || {}
+    const {title,price,rating,quantity,tags,socialMedia,product_collection,ratingCount} = content || {}
     return (
-        <Box sx={{margin:'10px'}}>
+        <Box sx={{margin:'10px',display:'flex',flexDirection:'column',gap:'1rem'}}>
             <Box>
                 <Typography>
                     Rating Counts || {ratingCount} 
                 </Typography>
-                <Rating num={rating}/>
+                <Rating value={rating/ratingCount} readOnly/>
             </Box>
             <Typography variant='h4'>
                 {title}
@@ -25,6 +26,13 @@ const ContentBox = ({content}) => {
             <Typography>
                Collection : {product_collection?.attributes?.collectionName}
             </Typography>
+            <ProductAciton socialMedia={socialMedia}/>
+            <Box sx={{display:'flex',alignItems:'center',gap:'1rem'}}>
+                <Typography variant='h6'>
+                    Tags:
+                </Typography>
+                <TagBox tags={tags}/>
+            </Box>
         </Box>
     );
 };
