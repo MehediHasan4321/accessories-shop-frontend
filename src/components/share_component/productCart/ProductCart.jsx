@@ -6,9 +6,9 @@ import Image from 'next/image';
 
 
 const ProductCart = ({ product }) => {
+   
     const { title, price, image, product_collection } = product.attributes || {}
-
-    const url = image?.data?.attributes?.formats?.small?.url
+    const url = image?.data[0]?.attributes?.formats?.small?.url
     const collectionName = product_collection?.data?.attributes?.collectionName
     const review = product?.attributes?.reviews?.data
 
@@ -23,7 +23,7 @@ const ProductCart = ({ product }) => {
                 <Image src={url} alt={title} width={270} height={270} />
                 <Box>
                     <Typography variant='body1' textAlign='center'>
-                        {title}
+                        {title.length>27?`${title.slice(0,27)}....`:title}
                     </Typography>
                     <Typography variant='body1' textAlign={'center'} color="GrayText">
                         {collectionName}

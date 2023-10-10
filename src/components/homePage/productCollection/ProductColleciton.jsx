@@ -26,7 +26,7 @@ const Collection = ({collection})=>{
     const url = collection?.attributes?.collectionImage?.data?.attributes?.formats?.thumbnail
    
     return (
-        <MUILink component={NextLink} href={'/shop'} underline='none'>
+        <MUILink component={NextLink} href={'/shop'} underline='none' color='black'>
             <Box component={'div'} sx={{width:'200px',height:'200px',display:'flex',flexDirection:'column',alignItems:'center',borderRadius:'10px',cursor:'pointer',"&:hover":{ boxShadow:'-1px 2px 15px 4px rgb(0,0,0,0.2)',transition:'0.3s'}}}>
              <Box component={'div'}>
              <img  src={url?.url} alt="image" style={{width:'150px',height:'150px',objectFit:'cover'}} />

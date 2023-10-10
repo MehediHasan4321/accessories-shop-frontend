@@ -10,9 +10,9 @@ const NavBar = () => {
     return (
         <Box sx={{ background: '#DDD' }}>
             <Container maxWidth='xl' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Box component='div'>
+                <MUILink component={NextLink} href={'/'}>
                     <img style={{width:'80px',height:'80px'}} src={logo?.src} alt="logo" />
-                </Box>
+                </MUILink>
                 <Box sx={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
                     <MUILink color={'black'} href={'/'} component={NextLink} underline='none' sx={{ cursor: 'pointer', "&:hover": { color: '#2A61B4' } }}>Home</MUILink>
                     <MUILink color={"black"} component={NextLink} href={'/shop'} underline='none' sx={{ cursor: 'pointer', "&:hover": { color: '#2A61B4' } }}>Shop</MUILink>

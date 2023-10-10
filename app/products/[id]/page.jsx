@@ -11,14 +11,11 @@ const Page = ({ params }) => {
     
     const { details, isLoading, reviews, images, description } = useProductDetails(id)
 
-    const url = images?.attributes?.url
-
-
     return (
         <Container maxWidth='xl'>
 
             <Box sx={{ display: 'flex', gap: '2rem' }}>
-                <ImageBox image={url} />
+                <ImageBox images={images} />
                 <ContentBox content={details} />
             </Box>
             <ProductDescription description={description} reviews={reviews} isLoading={isLoading} />
