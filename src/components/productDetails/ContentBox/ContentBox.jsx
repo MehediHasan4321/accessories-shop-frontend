@@ -3,9 +3,15 @@ import React from 'react';
 import ProductAciton from '../productAction/productAciton';
 import TagBox from '../tagBox/tagBox';
 
-const ContentBox = ({content}) => {
+const ContentBox = ({content,img,id}) => {
    
     const {title,price,rating,quantity,tags,socialMedia,product_collection,ratingCount} = content || {}
+    const item= {
+        title,
+        price,
+        img,
+        id,
+    }
     return (
         <Box sx={{margin:'10px',display:'flex',flexDirection:'column',gap:'1rem'}}>
             <Box>
@@ -26,7 +32,7 @@ const ContentBox = ({content}) => {
             <Typography>
                Collection : {product_collection?.attributes?.collectionName}
             </Typography>
-            <ProductAciton socialMedia={socialMedia}/>
+            <ProductAciton socialMedia={socialMedia} item={item}/>
             <Box sx={{display:'flex',alignItems:'center',gap:'1rem'}}>
                 <Typography variant='h6'>
                     Tags:

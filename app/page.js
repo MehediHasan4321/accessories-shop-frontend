@@ -6,16 +6,19 @@ import ProductColleciton from "@/src/components/homePage/productCollection/Produ
 import Service from "@/src/components/homePage/service/Service"
 
 
+
 const Home = () => {
 
     return (
 
         <>
+        
             <HomeBanner />
             <ProductColleciton />
             <NewArival />
             <Service />
             <PopularProducts />
+            
         </>
 
     )

@@ -4,20 +4,28 @@ import Image from "next/image"
 import NextLink from 'next/link'
 import { Link as MUILink } from '@mui/material'
 const TopRated = () => {
-    const { topRated } = useTopRated()
+    const { topRated,isLoading } = useTopRated()
 
-    return (
-        <>
-            <Typography variant="h5" sx={{margin:'20px 0'}}> 
-                Top Rated 
+    if(isLoading){
+        return(
+            <Typography variant="h4" textAlign={'center'}>
+                Loading .....
             </Typography>
-            <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {
-                    topRated.map(item => <Product key={item.id} product={item} id={item.id} />)
-                }
-            </Box>
-        </>
-    )
+        )
+    }else{
+        return (
+            <>
+                <Typography variant="h5" sx={{margin:'20px 0'}}> 
+                    Top Rated 
+                </Typography>
+                <Box component={'div'} sx={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    {
+                        topRated?.map(item => <Product key={item.id} product={item} id={item.id} />)
+                    }
+                </Box>
+            </>
+        )
+    }
 }
 
 
@@ -30,7 +38,7 @@ const Product = ({ product, id }) => {
             <Image src={url} height={120} width={100} />
             <Box>
                 <Typography>
-                    {data?.title.length > 20 ? `${data?.title.slice(0, 20)}...` : data?.title}
+                    {data?.title?.length > 20 ? `${data?.title.slice(0, 20)}...` : data?.title}
                 </Typography>
                 <Typography variant="h6" color={'primary'}>
                     ${data?.price}
