@@ -1,9 +1,12 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const IncDecBtn = () => {
-    const [state,setState] = useState(1)
+const IncDecBtn = ({handleQuantity,defaultQuantity=1}) => {
+    const [state,setState] = useState(defaultQuantity)
+    useEffect(()=>{
+        handleQuantity(state)
+    },[state])
     const btn_dec = {
         border:'1px solid #ddd',
         padding:'6px 10px',
@@ -23,14 +26,17 @@ const IncDecBtn = () => {
         alignItems:'center'
     }
 
+    
     const handleIncrement = ()=>{
         if(state<5){
             setState(prev=>prev + 1)
+            
         }
     }
     const handleDecrement = ()=>{
         if(state>1){
             setState(prev=>prev - 1)
+            
         }
     }
 

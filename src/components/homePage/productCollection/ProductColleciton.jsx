@@ -1,8 +1,9 @@
-
+'use client'
 import useCollection from '@/src/hooks/useCollection/useCollcetion';
 import { Box, Container, Typography } from '@mui/material';
 import NextLink from 'next/link'
 import { Link as MUILink } from '@mui/material';
+import { useStoreActions } from 'easy-peasy';
 
 
 const ProductColleciton = () => {
@@ -24,9 +25,13 @@ export default ProductColleciton;
 
 const Collection = ({collection})=>{
     const url = collection?.attributes?.collectionImage?.data?.attributes?.formats?.thumbnail
-   
+   const name = collection?.attributes?.collectionName
+   const {addCollection} = useStoreActions(action=>action.collection)
+   const handleCollectionName = (name)=>{
+    addCollection(name)
+   }
     return (
-        <MUILink component={NextLink} href={'/shop'} underline='none' color='black'>
+        <MUILink component={NextLink} href={'/shop'} underline='none' color='black' onClick={()=>handleCollectionName(name)} >
             <Box component={'div'} sx={{width:'200px',height:'200px',display:'flex',flexDirection:'column',alignItems:'center',borderRadius:'10px',cursor:'pointer',"&:hover":{ boxShadow:'-1px 2px 15px 4px rgb(0,0,0,0.2)',transition:'0.3s'}}}>
              <Box component={'div'}>
              <img  src={url?.url} alt="image" style={{width:'150px',height:'150px',objectFit:'cover'}} />

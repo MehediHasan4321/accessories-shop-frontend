@@ -1,5 +1,5 @@
 "use client"
-const { createStore, action } = require("easy-peasy");
+const { createStore, action,} = require("easy-peasy");
 
 const favoriteModel = {
     favorite: [],
@@ -14,6 +14,7 @@ const favoriteModel = {
 
 const cartModal = {
     carts: [],
+
     addToCart: action((state, cartItem) => {
         state.carts.push(cartItem)
     }),
@@ -23,10 +24,23 @@ const cartModal = {
     })
 }
 
+const collectionModel = {
+    collection:'',
+    addCollection : action((state,collectionName)=>{
+        state.collection = collectionName
+    })
+}
 
 const store = createStore({
     favorite: favoriteModel,
-    cart: cartModal
+    cart: cartModal,
+    collection:collectionModel,
 })
+
+
+
+
+
+
 
 export default store

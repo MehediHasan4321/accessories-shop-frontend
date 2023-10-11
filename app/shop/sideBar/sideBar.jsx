@@ -1,46 +1,26 @@
 import useTopRated from "@/src/hooks/useTopRated/useTopRated"
 import { Box, Typography,Slider } from "@mui/material"
 import TopRated from "../topRated/topRated"
+import { getFromLocalstorage } from "@/src/utils/localstorage/setLocalstorage"
+import useCollectonName from "@/src/hooks/useCollectonName/useCollectonName"
+import { useStoreState } from "easy-peasy"
 
 
 const SideBar = ()=>{
-   
-    const categorys = [
-        {
-            id: '1',
-            name: 'iphone 12',
-            quantity: '12'
-        },
-        {
-            id: '2',
-            name: 'samsung',
-            quantity: '5'
-        },
-        {
-            id: '3',
-            name: 'samsung Charger',
-            quantity: '5'
-        },
-        {
-            id: '4',
-            name: 'Samsung Case',
-            quantity: '10'
-        },
-        {
-            id: '5',
-            name: 'iphone case',
-            quantity: '10'
-        }
-    ]
+  
+   const {collection} = useStoreState(state=>state.collection)
+   const {subCategorys,isLoading} = useCollectonName(collection)
+
+
     return (
         <Box sx={{ width: '350px' }}>
             <Typography variant='h6' textAlign={'center'}>
-                Categorys
+                {collection}
             </Typography>
             <Box>
                 {
-                    categorys.map(item => <Box sx={{ width: '100%', marginY: '15px', cursor: 'pointer', padding: '8px', borderRadius: '5px', "&:hover": { backgroundColor: '#f2f2f2' } }} key={item.id}>
-                        <Typography sx={{ fontSize: '16px', color: 'gray', }}>{item.name}</Typography>
+                    subCategorys?.map(item => <Box sx={{ width: '100%', marginY: '15px', cursor: 'pointer', padding: '8px', borderRadius: '5px', "&:hover": { backgroundColor: '#f2f2f2' } }} key={item.id}>
+                        <Typography sx={{ fontSize: '16px', color: 'gray', }}>{item?.attributes?.subCategoryName}</Typography>
                     </Box>)
                 }
             </Box>
