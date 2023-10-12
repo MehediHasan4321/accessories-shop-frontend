@@ -1,14 +1,14 @@
 'use client'
 import IncDecBtn from "@/src/components/share_component/incDecBtn/incDecBtn"
-import { getFromLocalstorage } from "@/src/utils/localstorage/setLocalstorage"
 import { Cancel } from "@mui/icons-material"
+import { useStoreState } from "easy-peasy"
 import Image from "next/image"
 import { useState } from "react"
 
 const { Container, Typography, Box, IconButton } = require("@mui/material")
 
 const Carts = ()=>{
-    const data = getFromLocalstorage('carts')
+   const {carts:data} = useStoreState(state=>state.cart)
    
     return(
         <Container>

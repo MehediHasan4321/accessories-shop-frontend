@@ -1,16 +1,20 @@
-import useTopRated from "@/src/hooks/useTopRated/useTopRated"
-import { Box, Typography,Slider } from "@mui/material"
+import { Box, Typography, Slider } from "@mui/material"
 import TopRated from "../topRated/topRated"
-import { getFromLocalstorage } from "@/src/utils/localstorage/setLocalstorage"
 import useCollectonName from "@/src/hooks/useCollectonName/useCollectonName"
-import { useStoreState } from "easy-peasy"
+import { useStoreActions, useStoreState } from "easy-peasy"
 
 
-const SideBar = ()=>{
-  
-   const {collection} = useStoreState(state=>state.collection)
-   const {subCategorys,isLoading} = useCollectonName(collection)
+const SideBar = () => {
 
+    const { collection } = useStoreState(state => state.collection)
+    const {addSubCollection} = useStoreActions(action=>action.subCollection)
+    const { subCategorys, isLoading } = useCollectonName(collection)
+    const {setLoading} = useStoreActions(action=>action.loading)
+    const handleSubCollection = (collection) => {
+        
+        addSubCollection(collection)
+
+    }
 
     return (
         <Box sx={{ width: '350px' }}>
@@ -19,7 +23,7 @@ const SideBar = ()=>{
             </Typography>
             <Box>
                 {
-                    subCategorys?.map(item => <Box sx={{ width: '100%', marginY: '15px', cursor: 'pointer', padding: '8px', borderRadius: '5px', "&:hover": { backgroundColor: '#f2f2f2' } }} key={item.id}>
+                    subCategorys?.map(item => <Box onClick={() => handleSubCollection(item?.attributes?.subCategoryName)} component={'div'} sx={{ width: '100%', marginY: '15px', cursor: 'pointer', padding: '8px', borderRadius: '5px', "&:hover": { backgroundColor: '#f2f2f2' } }} key={item.id}>
                         <Typography sx={{ fontSize: '16px', color: 'gray', }}>{item?.attributes?.subCategoryName}</Typography>
                     </Box>)
                 }
@@ -28,7 +32,7 @@ const SideBar = ()=>{
                 <Typography variant='h5'>Price</Typography>
                 <Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
             </Box>
-            <TopRated/>
+            <TopRated />
         </Box>
     )
 }

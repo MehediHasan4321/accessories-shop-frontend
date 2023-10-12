@@ -4,9 +4,9 @@ import { useQuery } from "react-query"
 const useProductDetails = (id) => {
 
     const { data, isLoading } = useQuery({
-        queryKey: ['productDetails'], suspense: true, queryFn: () => {
+        queryKey: ['productDetails'], suspense: true, queryFn:async () => {
 
-            const response = axiosInstance.get(`http://localhost:1337/api/products/${id}/?populate=*`).then(res => res)
+            const response = await axiosInstance.get(`http://localhost:1337/api/products/${id}/?populate=*`).then(res => res)
 
             return response
 

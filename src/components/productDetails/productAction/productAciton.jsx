@@ -2,35 +2,46 @@
 import { FavoriteBorder } from "@mui/icons-material";
 import IncDecBtn from "../../share_component/incDecBtn/incDecBtn"
 import SocialIconBox from "../socialIconBox/SocialIconBox";
-import { useStoreActions } from "easy-peasy";
 import { useState } from "react";
-
+import useFavoriteCarts from "@/src/hooks/useFavoriteCarts/useFavoriteCarts";
 const { Box, Button, Typography } = require("@mui/material")
+import useLocalStorage from "@/src/hooks/useLocalStorage/useLocalStorage";
+import { useStoreState } from "easy-peasy";
 
+const ProductAciton = ({ socialMedia, item }) => {
+    const [quantity, setQuantity] = useState(1)
+    const { storeFavarite, storeCarts } = useFavoriteCarts()
+    const { saveToLocalStorage } = useLocalStorage()
+    const { cart, favorite } = useStoreState(state => state)
+   
+    
+    const handleQuantity = (num) => {
+        setQuantity(num)
+    }
 
-const ProductAciton = ({ socialMedia,item }) => {
-    const [product,setProduct] = useState(item)
-const {addToFavorte} = useStoreActions(acton=>acton.favorite)
-const {addToCart} = useStoreActions(action=>action.cart)
-const handleQuantity = (num)=>{
-    setProduct(prev=>(
-        {
-            ...prev,
-            quantity:num
-        }
-    ))
-}
+    saveToLocalStorage('cart',cart.carts)
 
+    const handleAddCart = () => {
+        const product = { ...item, quantity }
+        storeCarts(product)
+        
+    }
 
+    saveToLocalStorage('favorite',favorite.favorite)
+    const handleFavorite = () => {
+        const product = { ...item, quantity }
+        storeFavarite(product)
+
+    }
     return (
         <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                 <IncDecBtn handleQuantity={handleQuantity} />
-                <Button onClick={()=>addToCart(product)} variant="contained" sx={{ width: '200px', fontWeight: '700' }}>Add To Cart</Button>
+                <Button onClick={handleAddCart} variant="contained" sx={{ width: '200px', fontWeight: '700' }}>Add To Cart</Button>
                 <Button variant="outlined" sx={{ width: '200px', fontWeight: '700' }} >Buy Now</Button>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '15px' }}>
-                <Box onClick={()=>addToFavorte(product)} component={Button}>
+                <Box onClick={handleFavorite} component={Button}>
                     <FavoriteBorder />
                     <Typography sx={{ fontWeight: '700', fontSize: '15px', color: 'GrayText' }}>Add to Wishlist</Typography>
                 </Box>
