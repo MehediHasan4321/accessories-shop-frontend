@@ -2,9 +2,9 @@ import axiosInstance from "@/src/utils/axios"
 import { useQuery } from "react-query"
 
 const useProductDetails = (id) => {
-
+   
     const { data, isLoading } = useQuery({
-        queryKey: ['productDetails'], suspense: true, queryFn:async () => {
+        queryKey: ['productDetails'], suspense: true, queryFn: async () => {
 
             const response = await axiosInstance.get(`http://localhost:1337/api/products/${id}/?populate=*`).then(res => res)
 
@@ -12,6 +12,8 @@ const useProductDetails = (id) => {
 
         }
     })
+
+    
 
     const productData = data?.data?.data?.attributes
     const reviews = productData?.reviews?.data
@@ -36,7 +38,7 @@ const useProductDetails = (id) => {
     }
 
 
-    
+
 
     return {
         details: details,

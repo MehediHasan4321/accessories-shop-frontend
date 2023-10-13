@@ -3,7 +3,7 @@ import { Box, Grid, Typography } from "@mui/material"
 import SortNav from "../sortNav/sortNav"
 import ProductCart from "@/src/components/share_component/productCart/ProductCart"
 import useProductByCollection from "@/src/hooks/useProductByCollection/useProductByCollection"
-import { useStoreActions, useStoreState } from "easy-peasy"
+import { useStoreState } from "easy-peasy"
 
 const ProductContainer = () => {
     const { collection } = useStoreState(state => state.collection)

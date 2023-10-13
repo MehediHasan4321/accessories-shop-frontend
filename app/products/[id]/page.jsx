@@ -11,6 +11,7 @@ const Page = ({ params }) => {
     
     const { details, isLoading, reviews, images, description } = useProductDetails(id)
     const img = images[0]?.attributes?.formats?.small?.url
+    
     return (
         <Container maxWidth='xl'>
 

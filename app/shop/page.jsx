@@ -1,10 +1,11 @@
 'use client'
-import ProductCart from '@/src/components/share_component/productCart/ProductCart';
-import useProducts from '@/src/hooks/useProducts/useProducts';
-import { Box, Container, } from '@mui/material';
+
+import ProductContainer from '@/src/components/shopPage/productContainer/productContainer';
+import SideBar from '@/src/components/shopPage/sideBar/sideBar';
+import { Container, } from '@mui/material';
 import React from 'react';
-import ProductContainer from './productContainer/productContainer';
-import SideBar from './sideBar/sideBar';
+
+
 
 const Page = () => {
     return (

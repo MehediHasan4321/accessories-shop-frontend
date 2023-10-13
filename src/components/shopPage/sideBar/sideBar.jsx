@@ -1,7 +1,7 @@
 import { Box, Typography, Slider } from "@mui/material"
-import TopRated from "../topRated/topRated"
 import useCollectonName from "@/src/hooks/useCollectonName/useCollectonName"
 import { useStoreActions, useStoreState } from "easy-peasy"
+import TopRated from "../topRated/topRated"
 
 
 const SideBar = () => {

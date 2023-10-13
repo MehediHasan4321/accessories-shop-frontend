@@ -23,13 +23,14 @@ const NavBar = () => {
         favorite(id)
         
     }
-    saveToLocalStorage('favorite',favoriteStore.favorite)
+   
     
     const removeFromCart = (id)=>{
         cart(id)
         
     }
-    saveToLocalStorage('cart',cartStore.carts)
+
+    
 
     return (
         <Box sx={{ background: '#DDD' }}>

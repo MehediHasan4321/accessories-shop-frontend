@@ -19,7 +19,7 @@ const ProductAciton = ({ socialMedia, item }) => {
         setQuantity(num)
     }
 
-    saveToLocalStorage('cart',cart.carts)
+   
 
     const handleAddCart = () => {
         const product = { ...item, quantity }
@@ -27,7 +27,7 @@ const ProductAciton = ({ socialMedia, item }) => {
         
     }
 
-    saveToLocalStorage('favorite',favorite.favorite)
+    
     const handleFavorite = () => {
         const product = { ...item, quantity }
         storeFavarite(product)

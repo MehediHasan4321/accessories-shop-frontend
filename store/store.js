@@ -48,6 +48,7 @@ const cartModal = {
     })
 }
 
+
 const collectionModel = {
     collection: '',
     addCollection: action((state, collectionName) => {
