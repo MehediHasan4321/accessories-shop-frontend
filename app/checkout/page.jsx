@@ -1,13 +1,15 @@
 'use client'
 
 import Address from "@/src/components/checkout/address/address"
+import Payment from "@/src/components/checkout/payment/payment"
+import ThankYou from "@/src/components/checkout/thankyou/thankYou"
 import { useState } from "react"
 
 const { Container, Stepper, Step, StepLabel, Box, Button } = require("@mui/material")
 
 const CheckOut = () => {
     const [active,setActive] = useState(0)
-    const steps = ['Add address', 'Payment', 'Thank You']
+    const steps = ['Add address', 'Payment', 'Thank You','Review product']
 
     const handleComplete = ()=>{
         setActive(active + 1)
@@ -25,7 +27,15 @@ const CheckOut = () => {
                 </Stepper>
             </Box>
             <Box>
-                <Address handleComplete={handleComplete}/>
+                {
+                    active === 0 && <Address handleComplete={handleComplete}/>
+                }
+                {
+                    active === 1 && <Payment handleComplete={handleComplete}/>
+                }
+                {
+                    active === 2 && <ThankYou handleComplete={handleComplete}/>
+                }
             </Box>
         </Container>
     )

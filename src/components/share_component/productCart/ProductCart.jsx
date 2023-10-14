@@ -19,16 +19,16 @@ const ProductCart = ({ product }) => {
 
     return (
         <MUILink href={`/products/${product?.id}`} component={NextLink} underline='none' color='#2f2f2f' >
-            <Box component='div' sx={{ width: '270px', height: '370px', borderRadius: '7px', cursor: 'pointer', background: '#ddd', padding: '2px' }}>
+            <Box component='div' sx={{ width: '270px', height: '370px', borderRadius: '7px', cursor: 'pointer', background: '#ddd', padding: '2px',position:'relative' }}>
                 <Image src={url} alt={title} width={270} height={270} />
                 <Box>
                     <Typography variant='body1' textAlign='center'>
                         {title.length>27?`${title.slice(0,27)}....`:title}
                     </Typography>
-                    <Typography variant='body1' textAlign={'center'} color="GrayText">
+                    {/* <Typography variant='body1' textAlign={'center'} color="GrayText">
                         {collectionName}
-                    </Typography>
-                    <Box sx={{ padding: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    </Typography> */}
+                    <Box sx={{ padding: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',position:'absolute',bottom:'0',width:'90%' }}>
                         <Typography variant='h6'>
                             ${price}
                         </Typography>
