@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const { Grid, Box, Typography, Button } = require("@mui/material")
 
 const SubTotal = ({totalPrice})=>{
@@ -15,7 +17,7 @@ const SubTotal = ({totalPrice})=>{
                 <Typography variant="h5">Total Price:</Typography>
                 <Typography variant="h5">${(totalPrice + 5).toFixed(2)}</Typography>
             </Box>
-            <Button variant="outlined">Check Out</Button>
+            <Button component={Link} href="/checkout" variant="outlined">PROCEED TO CHECKOUT</Button>
         </Grid>
     )
 }
