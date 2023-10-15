@@ -61,19 +61,33 @@ const subCollectionModel = {
         state.subCollection = subCollection
     })
 }
-const loadingModal = {
-    loading: false,
-    setLoading: action((state, isLoading) => {
-        state.loading = isLoading
+
+const paymetnProductModal = {
+    products:{},
+    addProduct:action((state,product)=>{
+        const proObj = state.products
+
+        if(proObj[product.id]){
+            proObj[product.id]=product
+            state.products=proObj
+        }else{
+            state.products= {...proObj,[product.id]:product}
+        }
+    }),
+    removeProdcut: action((state,id)=>{
+        delete state.products[id];
+
     })
+    
 }
+
 
 const store = createStore({
     favorite: favoriteModel,
     cart: cartModal,
     collection: collectionModel,
     subCollection: subCollectionModel,
-    loading: loadingModal,
+    paymentProduct:paymetnProductModal,
 })
 
 

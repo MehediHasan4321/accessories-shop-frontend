@@ -1,8 +1,8 @@
 'use client'
-import { Badge, Box, Button, Container, IconButton, Modal, Typography } from '@mui/material';
+import { Badge, Box, Button, Container, IconButton, } from '@mui/material';
 import NextLink from 'next/link'
 import { Link as MUILink } from '@mui/material';
-import { AccountBox, AccountCircle, Add, Cancel, FavoriteBorder, Login, Logout, ProductionQuantityLimits, Reviews, Settings, ShoppingBag, ShoppingBagOutlined } from '@mui/icons-material';
+import { AccountCircle, Add, FavoriteBorder, Login, Logout, ProductionQuantityLimits, Reviews, Settings, ShoppingBag, } from '@mui/icons-material';
 import logo from './logo.png'
 import Link from 'next/link';
 import useFavoriteCarts from '@/src/hooks/useFavoriteCarts/useFavoriteCarts';
@@ -53,10 +53,7 @@ const NavBar = () => {
 
 
 const UserModal = () => {
-    const [modalOpen, setModalOpen] = useState(false)
-    const handleClose = () => {
-        setModalOpen(false)
-    }
+    
     return (
         
             <Box component={'div'} sx={{ position: 'absolute', right: '0', top: '5.2rem', border: '1px solid #ddd', padding: '10px', display: 'flex', flexDirection: 'column', gap: '1rem', width: '250px', height: 'auto', backgroundColor: '#f2f2f2', zIndex: '9' }}>

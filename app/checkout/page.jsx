@@ -2,6 +2,7 @@
 
 import Address from "@/src/components/checkout/address/address"
 import Payment from "@/src/components/checkout/payment/payment"
+import Review from "@/src/components/checkout/reviews/reviews"
 import ThankYou from "@/src/components/checkout/thankyou/thankYou"
 import { useState } from "react"
 
@@ -13,6 +14,9 @@ const CheckOut = () => {
 
     const handleComplete = ()=>{
         setActive(active + 1)
+    }
+    const handlePrevious = ()=>{
+        setActive(active -1)
     }
 
     return (
@@ -28,13 +32,16 @@ const CheckOut = () => {
             </Box>
             <Box>
                 {
-                    active === 0 && <Address handleComplete={handleComplete}/>
+                    active === 0 && <Address handleComplete={handleComplete} handlePrevious={handlePrevious}/>
                 }
                 {
-                    active === 1 && <Payment handleComplete={handleComplete}/>
+                    active === 1 && <Payment handleComplete={handleComplete} handlePrevious={handlePrevious}/>
                 }
                 {
-                    active === 2 && <ThankYou handleComplete={handleComplete}/>
+                    active === 2 && <ThankYou handleComplete={handleComplete} handlePrevious={handlePrevious}/>
+                }
+                {
+                    active === 3 && <Review handleComlete={handleComplete} handlePrevious={handlePrevious}/>
                 }
             </Box>
         </Container>

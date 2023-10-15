@@ -8,13 +8,12 @@ import { useStoreState } from "easy-peasy"
 const ProductContainer = () => {
     const { collection } = useStoreState(state => state.collection)
     const { subCollection } = useStoreState(state => state.subCollection)
-    const {loading} = useStoreState(state=>state.loading)
     const { products, isLoading, isSuccess } = useProductByCollection(collection, subCollection)
     
     return (
         <Box sx={{ width: '100%' }}>
             <SortNav />
-            {loading && <Typography variant="h4" textAlign={'center'}>Loading.....</Typography>}
+            {isLoading && <Typography variant="h4" textAlign={'center'}>Loading.....</Typography>}
             <Grid container sx={{ margin: '2rem' }} >
                 
                 {

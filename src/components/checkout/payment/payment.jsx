@@ -1,14 +1,22 @@
 'use client'
 
-import useForm from "@/src/hooks/useForm/useForm"
-import { ArrowLeft } from "@mui/icons-material"
 import { useState } from "react"
+import Method from "./method/method"
+import PaymentProduct from "./paymentProduct/paymentProduct"
+import { useStoreState } from "easy-peasy"
+import PayMentCard from "./paymentCard/paymentCard"
 
-const { Container, Typography, Box, Radio, FormControl, TextField, Checkbox, Button } = require("@mui/material")
+const { Container, Typography, Box, Grid, } = require("@mui/material")
 
-const Payment = ({ handleComplete }) => {
-    const methods = ['Credit Card', 'Cash on delevary']
+const Payment = ({ handleComplete, handlePrevious }) => {
+    const {products} = useStoreState(state=>state.paymentProduct)
     const [cardMethod, setCardMethod] = useState('Credit Cart')
+    const methods = ['Credit Card', 'Cash on delevary']
+
+    const payablePrice = products.reduce((acc,curr)=>{
+        acc += curr.price
+        return acc
+    },0)
 
     const handleMethod = (method) => {
         setCardMethod(method)
@@ -17,55 +25,25 @@ const Payment = ({ handleComplete }) => {
     return (
         <Container maxWidth='md'>
             <Typography variant="h4" textAlign={'center'}>Payment</Typography>
-            <Box sx={{ margin: '25px,0' }}>
-                <Typography variant="body1" color={'GrayText'} fontSize={15}>Payment Methods</Typography>
-                <Box sx={{ display: 'flex', gap: '2rem', margin: '15px 0' }}>
-                    {
-                        methods.map(method => <Method key={method} method={method} handleMethod={handleMethod} isChecked={cardMethod} />)
-                    }
+            <Grid container spacing={4}>
+                <Box component={Grid} item md={8} sx={{ margin: '25px,0' }}>
+                    <Typography variant="body1" color={'GrayText'} fontSize={15}>Payment Methods</Typography>
+                    <Box sx={{ display: 'flex', gap: '2rem', margin: '15px 0' }}>
+                        {
+                            methods.map(method => <Method key={method} method={method} handleMethod={handleMethod} isChecked={cardMethod} />)
+                        }
+                    </Box>
+                    <PayMentCard handleComplete={handleComplete} handlePrevious={handlePrevious} payablePrice={payablePrice} />
                 </Box>
-                <Card handleComplete={handleComplete} />
-            </Box>
-
+                <Grid item md={4}>
+                    <PaymentProduct products={products}/>
+                </Grid>
+            </Grid>
         </Container>
     )
 }
 
-const Method = ({ method, isChecked, handleMethod }) => {
 
-    return (
-        <Box component={'div'} onClick={() => handleMethod(method)} sx={{ width: '220px', height: '70px', border: '1px solid #ddd', borderRadius: '5px', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}>
-            <Radio checked={method === isChecked} name={method} />
-            <Typography sx={{ userSelect: 'none' }}>{method}</Typography>
-        </Box>
-    )
-}
 
-const Card = ({handleComplete}) => {
-    const init = { cardNumber: '', expireDate: '', cardCVV: '', cardHolderName: '' }
-    const { handleChange, formState, handleBlure, handleSubmit } = useForm(init)
-    return (
-        <FormControl sx={{ width: '475px' }}>
-            <Box marginTop={2}>
-                <TextField onChange={handleChange} onBlur={handleBlure} value={formState.value} type="number" required placeholder="Your Card Number" label='Card Number' sx={{ width: '100%' }} />
-            </Box>
-            <Box marginTop={2}>
-                <TextField onChange={handleChange} onBlur={handleBlure} value={formState.value} placeholder="Card Holder Name" label='Card Holder Name' sx={{ width: '100%' }} type="text" />
-            </Box>
-            <Box marginTop={2}>
-                <TextField onChange={handleChange} onBlur={handleBlure} value={formState.value} required placeholder="Card Expire Data" sx={{ width: '50%' }} type="date" />
-                <TextField onChange={handleChange} onBlur={handleBlure} value={formState.value} required placeholder="CVV Code" label='CVV Code' sx={{ width: '50%' }} type="number" />
-            </Box>
-            <Box marginTop={2} display={'flex'} justifyContent={'start'} alignItems={'center'}>
-                <Checkbox />
-                <Typography variant="body1" fontSize={15} color={'GrayText'}>Save My Card For Future</Typography>
-            </Box>
-            <Box marginTop={2} display={'flex'} justifyContent={'space-between'} alignItems={'center'} >
-                <Button><ArrowLeft />Back</Button>
-                <Button onClick={handleComplete} variant='contained' color='primary'>Pay</Button>
-            </Box>
-        </FormControl>
-    )
-}
 
 export default Payment

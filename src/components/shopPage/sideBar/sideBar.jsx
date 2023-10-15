@@ -9,7 +9,6 @@ const SideBar = () => {
     const { collection } = useStoreState(state => state.collection)
     const {addSubCollection} = useStoreActions(action=>action.subCollection)
     const { subCategorys, isLoading } = useCollectonName(collection)
-    const {setLoading} = useStoreActions(action=>action.loading)
     const handleSubCollection = (collection) => {
         
         addSubCollection(collection)

@@ -32,7 +32,7 @@ const ReviewBox = ({ reviews }) => {
 
     return (
         <Box>
-            <TakeReview/>
+           
             {/* <hr style={{borderBottom:'1px solid #ddd',margin:'15px 0'}}/> */}
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {reviews.map(review => <Review key={review.id} review={review} />)}
