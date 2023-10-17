@@ -1,4 +1,5 @@
 'use client'
+
 import HomeBanner from "@/src/components/homePage/homeBanner"
 import NewArival from "@/src/components/homePage/newArival/NewArival"
 import PopularProducts from "@/src/components/homePage/popularProducts/PopularProducts"
@@ -7,19 +8,16 @@ import Service from "@/src/components/homePage/service/Service"
 
 
 
+
 const Home = () => {
 
-    return (
-
-        <>
-            <HomeBanner />
-            <ProductColleciton />
-            <NewArival />
-            <Service />
-            <PopularProducts />  
-        </>
-
-    )
+    return <>
+        <HomeBanner/>
+        <ProductColleciton />
+        <NewArival />
+        <Service />
+        <PopularProducts />
+    </>
 }
 
 export default Home

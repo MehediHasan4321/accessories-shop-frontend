@@ -14,8 +14,6 @@ const NavBar = () => {
     const { carts, favorites, removeFromCart: cart, removeFromFavorite: favorite } = useFavoriteCarts()
 
 
-
-
     return (
         <Box sx={{ background: '#DDD' }}>
             <Container maxWidth='xl' sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative' }}>
@@ -52,6 +50,7 @@ const NavBar = () => {
 };
 
 
+
 const UserModal = () => {
     
     return (
@@ -69,8 +68,8 @@ const UserModal = () => {
                     <ShoppingBag />
                     Purchess & Billing
                 </Button>
-                <Button component={Link} href='/logIn' sx={{ display: 'flex', gap: '2rem', justifyContent: 'left' }}>
-                    <Login />
+                <Button sx={{ display: 'flex', gap: '2rem', justifyContent: 'left' }}>
+                    <Login/>
                     login
                 </Button>
                 <Button sx={{ display: 'flex', gap: '2rem', justifyContent: 'left' }}>

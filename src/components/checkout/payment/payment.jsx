@@ -5,6 +5,7 @@ import Method from "./method/method"
 import PaymentProduct from "./paymentProduct/paymentProduct"
 import { useStoreState } from "easy-peasy"
 import PayMentCard from "./paymentCard/paymentCard"
+import { objectToArray } from "@/src/utils/objcetToArray"
 
 const { Container, Typography, Box, Grid, } = require("@mui/material")
 
@@ -13,8 +14,8 @@ const Payment = ({ handleComplete, handlePrevious }) => {
     const [cardMethod, setCardMethod] = useState('Credit Cart')
     const methods = ['Credit Card', 'Cash on delevary']
 
-    const payablePrice = products.reduce((acc,curr)=>{
-        acc += curr.price
+    const payablePrice = objectToArray(products).reduce((acc,curr)=>{
+        acc += (curr.price*curr.qtn)
         return acc
     },0)
 
